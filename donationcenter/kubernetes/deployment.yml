@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: donationcenter
-          image: username/donationcenter:latest
+          image: skccuser13.azurecr.io/donationcenter:latest
           ports:
             - containerPort: 8080
           readinessProbe:
