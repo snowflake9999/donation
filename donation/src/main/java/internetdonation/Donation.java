@@ -32,11 +32,11 @@ public class Donation {
 			BeanUtils.copyProperties(this, payCompleted);
 			payCompleted.publish();
 
-//            try {
-//                Thread.currentThread().sleep((long) (400 + Math.random() * 220));
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
 			System.out.println(toString());
 			System.out.println("***** 결재 완료 *****");
