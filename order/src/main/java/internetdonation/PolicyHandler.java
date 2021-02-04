@@ -25,10 +25,14 @@ public class PolicyHandler{
     public void wheneverDonationCompleted_(@Payload DonationCompleted donationCompleted){
 
         if(donationCompleted.isMe()){
-            System.out.println("##### listener  : " + donationCompleted.toJson());
+            System.out.println("##### order donationCompleted listener  : " + donationCompleted.toJson());
             
             Optional<Order> orderOptional= repository.findById(donationCompleted.getOrderId());
+           
             Order order = orderOptional.get();
+            
+            System.out.println("##### order donationCompleted order id : " + order.getOrderId());
+            
             order.setStatus("DonationCompleted");
             
             repository.save(order);
@@ -38,7 +42,7 @@ public class PolicyHandler{
     public void wheneverPayCanceled_(@Payload PayCanceled payCanceled){
 
         if(payCanceled.isMe()){
-            System.out.println("##### listener  : " + payCanceled.toJson());
+            System.out.println("##### payCanceled  listener  : " + payCanceled.toJson());
             
             
             Optional<Order> orderOptional= repository.findById(payCanceled.getOrderId());
