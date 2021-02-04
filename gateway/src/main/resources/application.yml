@@ -1,0 +1,74 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: order
+          uri: http://localhost:8081
+          predicates:
+            - Path=/orders/** 
+        - id: donation
+          uri: http://localhost:8082
+          predicates:
+            - Path=/donations/** 
+        - id: unicef
+          uri: http://localhost:8083
+          predicates:
+            - Path=/donationManages/** 
+        - id: donationcenter
+          uri: http://localhost:8084
+          predicates:
+            - Path= /mypages/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: order
+          uri: http://order:8080
+          predicates:
+            - Path=/orders/** 
+        - id: donation
+          uri: http://donation:8080
+          predicates:
+            - Path=/donations/** 
+        - id: unicef
+          uri: http://unicef:8080
+          predicates:
+            - Path=/donationManages/** 
+        - id: donationcenter
+          uri: http://donationcenter:8080
+          predicates:
+            - Path= /mypages/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
