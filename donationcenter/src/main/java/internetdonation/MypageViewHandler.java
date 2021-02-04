@@ -26,6 +26,7 @@ public class MypageViewHandler {
                  mypage.setId		(ordered.getId());
                  mypage.setOrderId	(ordered.getOrderId());
                  mypage.setDonorName(ordered.getDonorName());
+                 mypage.setAmt		(ordered.getAmt());
                  mypage.setStatus	(ordered.getStatus());
                 // view 레파지 토리에 save
                  repository.save(mypage);

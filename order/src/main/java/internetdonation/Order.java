@@ -24,12 +24,14 @@ public class Order {
     @PostPersist
     public void onPostPersist(){
     	
+    	this.setStatus("Oredered");
+    	
         Ordered ordered = new Ordered();
         ordered.setId(this.id);
         ordered.setOrderId(this.orderId);
         ordered.setDonorName(this.donorName);
         ordered.setAmt(this.amt);
-        ordered.setStatus("Oredered");
+        ordered.setStatus(this.status);
         
         BeanUtils.copyProperties(this, ordered);
         ordered.publishAfterCommit();
@@ -41,6 +43,7 @@ public class Order {
        donation.setOrderId(this.getOrderId());
        donation.setDonorName(this.donorName);
        donation.setStatus(this.status);
+       donation.setAmt(this.amt);
         // mappings goes here
         OrderApplication.applicationContext.getBean(DonationService.class)
             .pay(donation);

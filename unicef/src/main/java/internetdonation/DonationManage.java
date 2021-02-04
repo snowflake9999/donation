@@ -34,12 +34,12 @@ public class DonationManage {
 
         if("Payed".equals(status)) {
             this.setStatus("DonationCompleted");
-            DonationCompleted donation = new DonationCompleted();
-            BeanUtils.copyProperties(this, donation);
-            donation.publish();
+            DonationCompleted donationCompleted = new DonationCompleted();
+            BeanUtils.copyProperties(this, donationCompleted);
+            donationCompleted.publish();
 
             System.out.println(toString());
-            System.out.println("***** 배송 시작 *****");
+         
         }
 
 
