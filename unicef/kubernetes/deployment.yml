@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: unicef
-          image: kccuser13.azurecr.io/unicef:latest
+          image: skccuser13.azurecr.io/unicef:latest
           ports:
             - containerPort: 8080
           readinessProbe:
