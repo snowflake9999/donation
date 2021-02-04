@@ -30,6 +30,8 @@ public class PolicyHandler{
 
             DonationManage donationmanage = new DonationManage();
             donationmanage.setOrderId(payCompleted.getOrderId());
+            donationmanage.setDonorName(payCompleted.getDonorName());
+            donationmanage.setAmt(payCompleted.getAmt());
             donationmanage.setStatus("Payed");
             repository.save(donationmanage);
         }
