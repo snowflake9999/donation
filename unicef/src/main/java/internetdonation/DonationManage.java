@@ -1,8 +1,13 @@
 package internetdonation;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostPersist;
+import javax.persistence.Table;
+
 import org.springframework.beans.BeanUtils;
-import java.util.List;
 
 @Entity
 @Table(name="DonationManage_table")
@@ -18,9 +23,24 @@ public class DonationManage {
 
     @PostPersist
     public void onPostPersist(){
-        DonationCompleted donationCompleted = new DonationCompleted();
-        BeanUtils.copyProperties(this, donationCompleted);
-        donationCompleted.publishAfterCommit();
+    	
+        
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+            
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if("Payed".equals(status)) {
+            this.setStatus("DonationCompleted");
+            DonationCompleted donation = new DonationCompleted();
+            BeanUtils.copyProperties(this, donation);
+            donation.publish();
+
+            System.out.println(toString());
+            System.out.println("***** 배송 시작 *****");
+        }
 
 
     }

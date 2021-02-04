@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: donation
+  namespace: coffee
   labels:
     app: donation
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: donation
-          image: username/donation:latest
+          image: skccuser13.azurecr.io/donation:latest
           ports:
             - containerPort: 8080
           readinessProbe:

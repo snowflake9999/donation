@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: order
-          image: kccuser13.azurecr.io/order:latest
+          image: skccuser13.azurecr.io/order:latest
           ports:
             - containerPort: 8080
           env:
