@@ -2,9 +2,10 @@ package internetdonation;
 
 public class DonationCompleted extends AbstractEvent {
 
-    private Long id;
+	private Long id;
     private Long orderId;
-    private Double point;
+    private String donorName;
+    private Integer amt;
     private String status;
 
     public Long getId() {
@@ -21,12 +22,19 @@ public class DonationCompleted extends AbstractEvent {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
-    public Double getPoint() {
-        return point;
+    public String getDonorName() {
+        return donorName;
     }
 
-    public void setPoint(Double point) {
-        this.point = point;
+    public void setDonorName(String donorName) {
+        this.donorName = donorName;
+    }
+    public Integer getAmt() {
+        return amt;
+    }
+
+    public void setAmt(Integer amt) {
+        this.amt = amt;
     }
     public String getStatus() {
         return status;
