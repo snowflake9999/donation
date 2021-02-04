@@ -28,7 +28,7 @@ public class Order {
     	
         Ordered ordered = new Ordered();
         ordered.setId(this.id);
-        ordered.setOrderId(this.orderId);
+        ordered.setOrderId(this.id);
         ordered.setDonorName(this.donorName);
         ordered.setAmt(this.amt);
         ordered.setStatus(this.status);
