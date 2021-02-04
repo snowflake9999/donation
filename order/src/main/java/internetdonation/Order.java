@@ -40,7 +40,7 @@ public class Order {
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
        Donation donation = new Donation();
-       donation.setOrderId(this.getOrderId());
+       donation.setOrderId(this.id);
        donation.setDonorName(this.donorName);
        donation.setStatus(this.status);
        donation.setAmt(this.amt);
