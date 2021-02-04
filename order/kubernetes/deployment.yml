@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: order
+  namespace: coffee
   labels:
     app: order
 spec:
@@ -16,9 +17,15 @@ spec:
     spec:
       containers:
         - name: order
-          image: username/order:latest
+          image: kccuser13.azurecr.io/order:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: configurl
+              valueFrom:
+                configMapKeyRef:
+                  name: apidonationurl
+                  key: url
           readinessProbe:
             httpGet:
               path: '/actuator/health'

@@ -2,6 +2,11 @@ package internetdonation;
 
 import javax.persistence.*;
 import org.springframework.beans.BeanUtils;
+
+import internetdonation.external.Donation;
+import internetdonation.external.DonationService;
+
+
 import java.util.List;
 
 @Entity
@@ -18,16 +23,23 @@ public class Order {
 
     @PostPersist
     public void onPostPersist(){
+    	
         Ordered ordered = new Ordered();
+        ordered.setId(this.id);
+        ordered.setOrderId(this.orderId);
+        ordered.setDonorName(this.donorName);
+        ordered.setAmt(this.amt);
+        ordered.setStatus("Oredered");
+        
         BeanUtils.copyProperties(this, ordered);
         ordered.publishAfterCommit();
 
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
-        .external.Donation donation = new .external.Donation();
+       Donation donation = new Donation();
         // mappings goes here
-        Application.applicationContext.getBean(.external.DonationService.class)
+        OrderApplication.applicationContext.getBean(DonationService.class)
             .pay(donation);
 
 
@@ -35,10 +47,19 @@ public class Order {
 
     @PostUpdate
     public void onPostUpdate(){
-        OrderCanceled orderCanceled = new OrderCanceled();
-        BeanUtils.copyProperties(this, orderCanceled);
-        orderCanceled.publishAfterCommit();
+//        OrderCanceled orderCanceled = new OrderCanceled();
+//        BeanUtils.copyProperties(this, orderCanceled);
+//        orderCanceled.publishAfterCommit();
 
+
+    }
+    
+    @PostRemove
+    public void onPostRemove(){
+        this.setStatus("OrderCancelled");
+        OrderCanceled orderCancelled = new OrderCanceled();
+        BeanUtils.copyProperties(this, orderCancelled);
+        orderCancelled.publish();
 
     }
 

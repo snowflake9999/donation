@@ -37,6 +37,10 @@ logging:
     org.springframework.cloud: debug
 server:
   port: 8081
+
+api:
+  url:
+    donation: http://localhost:8083
 ---
 
 spring:
@@ -62,3 +66,7 @@ spring:
         event-out:
           destination: internetdonation
           contentType: application/json
+
+api:
+  url:
+    donation: ${configurl}
