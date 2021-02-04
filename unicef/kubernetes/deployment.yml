@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: unicef
-  namespace:coffee
+  namespace: coffee
   labels:
     app: unicef
 spec:
