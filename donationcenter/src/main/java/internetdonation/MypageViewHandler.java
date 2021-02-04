@@ -24,7 +24,7 @@ public class MypageViewHandler {
                  Mypage mypage = new Mypage();
                 // view 객체에 이벤트의 Value 를 set 함
                  mypage.setId		(ordered.getId());
-                 mypage.setOrderId	(ordered.getOrderId());
+                 mypage.setOrderId	(ordered.getId());
                  mypage.setDonorName(ordered.getDonorName());
                  mypage.setAmt		(ordered.getAmt());
                  mypage.setStatus	(ordered.getStatus());
