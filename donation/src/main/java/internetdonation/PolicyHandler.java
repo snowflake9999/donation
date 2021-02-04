@@ -26,7 +26,7 @@ public class PolicyHandler{
 
             Donation donation = new Donation();
             donation.setOrderId(orderCanceled.getId());
-            donation.setStatus("OrderCancelled");
+            donation.setStatus("OrderCanceled");
             
             repository.save(donation);
         }
