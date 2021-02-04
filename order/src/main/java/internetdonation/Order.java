@@ -24,7 +24,7 @@ public class Order {
     @PostPersist
     public void onPostPersist(){
     	
-    	this.setStatus("Oredered");
+    	this.setStatus("Ordered");
     	
         Ordered ordered = new Ordered();
         ordered.setId(this.id);
