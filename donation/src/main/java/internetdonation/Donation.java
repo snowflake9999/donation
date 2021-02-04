@@ -42,16 +42,17 @@ public class Donation {
 			System.out.println("***** 결재 완료 *****");
 
 		} else if ("OrderCanceled".equals(status)) {
+			System.out.println("***** 결재 취소 중 *****");
+			
+			this.setStatus("PayCanceled");
+			PayCanceled payCancelled = new PayCanceled();
+			BeanUtils.copyProperties(this, payCancelled);
+			payCancelled.publish();
+			
+			System.out.println("***** 결재 취소 완료 *****");
 
 		}
-		System.out.println("***** 결재 취소 중 *****");
 		
-		this.setStatus("PayCanceled");
-		PayCanceled payCancelled = new PayCanceled();
-		BeanUtils.copyProperties(this, payCancelled);
-		payCancelled.publish();
-		
-		System.out.println("***** 결재 취소 완료 *****");
 	}
 
 	public Long getId() {

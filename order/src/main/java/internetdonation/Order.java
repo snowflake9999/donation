@@ -38,6 +38,9 @@ public class Order {
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
        Donation donation = new Donation();
+       donation.setOrderId(this.getOrderId());
+       donation.setDonorName(this.donorName);
+       donation.setStatus(this.status);
         // mappings goes here
         OrderApplication.applicationContext.getBean(DonationService.class)
             .pay(donation);
@@ -56,7 +59,7 @@ public class Order {
     
     @PostRemove
     public void onPostRemove(){
-        this.setStatus("OrderCancelled");
+        this.setStatus("OrderCanceled");
         OrderCanceled orderCancelled = new OrderCanceled();
         BeanUtils.copyProperties(this, orderCancelled);
         orderCancelled.publish();
